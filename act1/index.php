@@ -4,56 +4,78 @@
 		echo "<pre>".$dump."</pre>";
 	}
 
-  $fp = fopen("src/coches.csv", "r");
-	$coches = [];
 
-	$cabeceraCsv = fgetcsv($fp);
+	// Pruebas
 
-	while ($data = fgetcsv($fp)) {
-		$coches[$data[3]] = array_combine($cabeceraCsv, $data);
+	$coches = [
+		crearCoche("Seat", "Ibiza", "Rojo", "9876LMN"),
+		crearCoche("Renault", "Clio", "Azul", "5432BDF"),
+		crearCoche("Peugeot", "208", "Negro", "1122KLP"),
+		crearCoche("Volkswagen", "Golf", "Blanco", "8899XCV"),
+		crearCoche("Ford", "Focus", "Gris", "4455HRT"),
+		crearCoche("Hyundai", "Tucson", "Verde", "3322JMK"),
+		crearCoche("Kia", "Sportage", "Plata", "7766NRW"),
+		crearCoche("Dacia", "Sandero", "Naranja", "5544PQL"),
+		crearCoche("BMW", "Serie 3", "Blanco", "6611VBN"),
+		crearCoche("Audi", "A3", "Negro", "2288ZXT")
+	];
+
+	// Imprimir todos los coches
+	// echo "=== TODOS LOS COCHES ===\n\n";
+	// print_r($coches);
+
+	// $color = "Blanco";
+	// $cochesColor = obtenerCochesPorColor($coches, $color);
+
+	// echo "\n\n=== TODOS LOS COCHES (".$color.") ===\n\n";
+	// print_r($cochesColor);
+
+	// echo "\n\n=== MARCA DE LOS COCHES (".$color.") ===\n\n";
+	// foreach($cochesColor as $coche) {
+	// 	echo "- ".$coche["marca"]."\n";
+	// }
+
+	dump(print_r(indexarCoches($coches), true));
+
+	// Funciones
+
+	function crearCoche($marca, $modelo, $color, $matricula) {
+		return array("marca" => $marca, "modelo" => $modelo, "color" => $color, "matricula" => $matricula);
 	}
-
-	fclose($fp);
-	
-	// echo "<h1>=== TODOS LOS COCHES ===</h1>";
-	// dump(print_r($coches, true));
 
 	function obtenerCochesPorColor($coches, $color) {
 		$res = [];
 
 		foreach($coches as $coche) {
 			if ($coche["color"] === $color) {
-				$res[$coche["matricula"]] = $coche;
+				$res[] = $coche;
 			}
 		}
 
 		return $res;
 	}
-	
-	// echo "<h1>=== TODOS LOS COCHES BLANCOS ===</h1>";
-	// dump(print_r(obtenerCochesPorColor($coches,"Blanco"), true));
 
-	// Con filegetcontents
-	$archivoTextoPlano = file_get_contents("src/coches.csv");
-	dump($archivoTextoPlano);
-	
+	function indexarCoches($coches) {
+		$res = [];
 
-	echo "<h1>=== TODOS LOS COCHES ===</h1>";
-	$lineasCSV = explode("\n", $archivoTextoPlano);
+		foreach($coches as $coche) {
+			$res[$coche["matricula"]] = $coche;
+		}
 
-	$coches = [];
-	$cabeceraCsv = explode(",", $lineasCSV[0]);
-
-	dump(print_r($cabeceraCsv, true));
-
-	for ($i = 1; $i < count($lineasCSV); $i++) {
-		$linea = explode(",", $lineasCSV[$i]);
-		$coches[$linea[3]] = array_combine($cabeceraCsv, $linea);
+		return $res;
 	}
 
-	dump(print_r($coches, true));
-	// foreach($lineasCSV as $linea) {
-	// 	$coches[$data[3]] = array_combine($cabeceraCsv, $data);
-	// }
-
+	// array_column();
+	// array_combine();
+	// array_filter();
+	// array_is();
+	// array_map();
+	// array_pop();
+	// array_push();
+	// array_walk();
+	// array_shift();
+	// in_array();
+	// reset();
+	// explode();
+	// implode();
 ?>
