@@ -27,19 +27,19 @@
 		
 		foreach ($data as $key => $value) {
 			if ($value["imagen"] !== "") {
-				$imagen = $value["imagen"];
+				$imagen = htmlspecialchars($value["imagen"]);
 			} else {
 				$imagen = "https://img.magnific.com/vector-premium/silueta-negra-automovil_606479-557.jpg";
 			}
 
 			$res .= '
 				<div class="coche">
-					<img src="'.$imagen.'" alt="">
-					<h2>'.$value["marca"].' '.$value["modelo"].'</h2>
+					<img src="'.htmlspecialchars($imagen).'" alt="">
+					<h2>'.htmlspecialchars($value["marca"]).' '.htmlspecialchars($value["modelo"]).'</h2>
 					<ul>
-						<li>Marca: '.$value["marca"].'</li>
-						<li>Color: '.$value["color"].'</li>
-						<li>Matricula: '.$value["matricula"].'</li>
+						<li>Marca: '.htmlspecialchars($value["marca"]).'</li>
+						<li>Color: '.htmlspecialchars($value["color"]).'</li>
+						<li>Matricula: '.htmlspecialchars($value["matricula"]).'</li>
 					</ul>
 				</div>
 			';
