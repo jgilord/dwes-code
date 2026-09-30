@@ -12,7 +12,7 @@
   </header>
   <main>
     <div class="main-frame">
-      <?php echo $output??"" ?>
+      <?php echo $boardContent??"" ?>
 
     </div>
   </main>
