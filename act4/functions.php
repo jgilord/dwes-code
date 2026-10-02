@@ -65,9 +65,17 @@
     47 => "grey-mountain-bottom-right-tile"
   ];
 
-  function getMarkupTile($tileIndex) {
+  function getMarkupTile($tileIndex, ?bool $link = null) {
     global $tilesIndex;
-    return "<div class='tile ".$tilesIndex[$tileIndex]."'></div>";
+    $res = "<div class='tile ";
+    $res .= $tilesIndex[$tileIndex]."'>";
+
+    if ($link) {
+      $res .= "<img src='public/link.png'></img>";
+    }
+
+    $res .= "</div>";
+    return $res;
   }
 
   function getRandomStage() {
@@ -98,15 +106,57 @@
     return $stage;
   }
 
-  function getBoardMarkup(array $stage) {
+  function getBoardMarkup(array $stage, array $link_pos) {
     $res = "";
 
-    foreach ($stage as $stageLines) {
-      foreach ($stageLines as $tile) {
-        $res .= getMarkupTile($tile);
+    foreach ($stage as $x => $stageLines) {
+      foreach ($stageLines as $y => $tile) {
+        $showLink = false;
+        if ($link_pos["x"] === $x && $link_pos["y"] === $y) {
+          $showLink = true;
+        }
+        $res .= getMarkupTile($tile, $showLink);
       }
     }
 
     return $res;
+  }
+
+	function CSVtoBoard(String $CSVPath) {
+		$archivoTextoPlano = file_get_contents($CSVPath);
+		$filasCSV = array_map("trim", explode("\n", $archivoTextoPlano));
+		
+		$res = [];
+
+    foreach ($filasCSV as $fila) {
+      $res[] = explode(",", $fila);
+    }
+
+		return $res;
+	}
+
+  function getLinkPos() {
+    $res = [];
+    $res["x"] = filter_input(INPUT_GET, "link_pos_x", FILTER_VALIDATE_INT);
+    $res["y"] = filter_input(INPUT_GET, "link_pos_y", FILTER_VALIDATE_INT);
+    // print_r($res);
+    return $res;
+  }
+
+  function getNextLinkPosURL($dir) {
+    $linkPos = getLinkPos();
+    $x = $linkPos["x"];
+    $y = $linkPos["y"];
+    if ($dir === "up" && $x > 0) {
+      $x--;
+    } else if ($dir === "down" && $x < 31) {
+      $x++;
+    } else if ($dir === "left" && $y > 0) {
+      $y--;
+    } else if ($dir === "rigth" && $y < 31) {
+      $y++;
+    }
+
+    return "/act4/?link_pos_x=".$x."&link_pos_y=".$y;
   }
 ?>

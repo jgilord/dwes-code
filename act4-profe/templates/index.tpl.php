@@ -2,6 +2,7 @@
 /** @var String $num_columns
  *  @var String $num_rows
  *  @var String $board_markup 
+ *  @var array $linkPos
  */
 ?>
 <!DOCTYPE html>
@@ -19,13 +20,13 @@
             flex-direction: column;
         }
         .board-container{
+            position: relative;
             background-color: red;
             /*width: '<?php echo $num_columns*16 ?>px';
             height: '<?php echo $num_rows*16 ?>px';*/
             display:grid;
             grid-template-columns: repeat(<?php echo $num_columns; ?>,16px);
             grid-template-rows: repeat(<?php echo $num_rows; ?>,16px);
-
         }
         .controls-container{
             background-color: blue;
@@ -58,15 +59,23 @@
             background-position-y: -52px;
         }
 
+        .link {
+            position: absolute;
+            height: 1rem;
+            width: 1rem;
+            left: calc(<?php echo $linkPos["y"]; ?>*1rem);
+            top: calc(<?php echo $linkPos["x"]; ?>*1rem);
+        }
+
     </style>
 </head>
 <body>
     <main>
         <h1>Zelda 40th Anniversary</h1>
         <?php echo $board_markup; ?> 
-        <div class="controls-container">
+        <!-- <div class="controls-container">
 
-        </div>
+        </div> -->
     </main>
     
 </body>

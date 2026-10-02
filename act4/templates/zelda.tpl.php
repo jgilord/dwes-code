@@ -13,7 +13,12 @@
   <main>
     <div class="main-frame">
       <?php echo $boardContent??"" ?>
-
+    </div>
+    <div class="controls">
+      <a href="<?php echo getNextLinkPosURL("up") ?>"><button class="control">🡱</button></a>
+      <a href="<?php echo getNextLinkPosURL("down") ?>"><button class="control">🡳</button></a>
+      <a href="<?php echo getNextLinkPosURL("rigth") ?>"><button class="control">🡲</button></a>
+      <a href="<?php echo getNextLinkPosURL("left") ?>"><button class="control">🡰</button></a>
     </div>
   </main>
 </body>

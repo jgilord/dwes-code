@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 include(__DIR__.'/src/functions.php');
 
+$linkPos = getLinkPos();
 
 $board = CSVtoBoard('./public/csv/board.csv');
 
