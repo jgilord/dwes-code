@@ -137,26 +137,35 @@
 
   function getLinkPos() {
     $res = [];
-    $res["x"] = filter_input(INPUT_GET, "link_pos_x", FILTER_VALIDATE_INT);
-    $res["y"] = filter_input(INPUT_GET, "link_pos_y", FILTER_VALIDATE_INT);
+    $res["x"] = filter_input(INPUT_GET, "link_pos_x", FILTER_VALIDATE_INT) ?? 0;
+    $res["y"] = filter_input(INPUT_GET, "link_pos_y", FILTER_VALIDATE_INT) ?? 15;
     // print_r($res);
     return $res;
   }
 
-  function getNextLinkPosURL($dir) {
-    $linkPos = getLinkPos();
-    $x = $linkPos["x"];
-    $y = $linkPos["y"];
-    if ($dir === "up" && $x > 0) {
-      $x--;
-    } else if ($dir === "down" && $x < 31) {
-      $x++;
-    } else if ($dir === "left" && $y > 0) {
-      $y--;
-    } else if ($dir === "rigth" && $y < 31) {
-      $y++;
+  function getTileTypeFromCords(array $cords, array $stage) {
+    return $stage[$cords["x"]][$cords["y"]];
+  }
+
+  function getNextLinkPosURL($dir, $stage) {
+    $currentLinkPos = getLinkPos();
+    $nextlinkPos = $currentLinkPos;
+    if ($dir === "up" && $nextlinkPos["x"] > 0) {
+      $nextlinkPos["x"]--;
+    } else if ($dir === "down" && $nextlinkPos["x"] < 31) {
+      $nextlinkPos["x"]++;
+    } else if ($dir === "left" && $nextlinkPos["y"] > 0) {
+      $nextlinkPos["y"]--;
+    } else if ($dir === "rigth" && $nextlinkPos["y"] < 31) {
+      $nextlinkPos["y"]++;
     }
 
-    return "/act4/?link_pos_x=".$x."&link_pos_y=".$y;
+    $walkableTiles = [0, 1, 2, 35];
+
+    if (!in_array(getTileTypeFromCords($nextlinkPos, $stage), $walkableTiles)) {
+      $nextlinkPos = $currentLinkPos;
+    }
+
+    return "/act4/?link_pos_x=".$nextlinkPos["x"]."&link_pos_y=".$nextlinkPos["y"];
   }
 ?>

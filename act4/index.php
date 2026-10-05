@@ -7,7 +7,8 @@
 	include("functions.php");
 
 	$stage = CSVtoBoard("public/stage.csv");
-	$boardContent = getBoardMarkup($stage, getLinkPos());
+	$linkPos = getLinkPos();
+	$boardContent = getBoardMarkup($stage, $linkPos);
 
 	include("templates/zelda.tpl.php");
 ?>
