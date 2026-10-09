@@ -1,0 +1,9 @@
+nombre,email,pista,fecha,hora,material,terminos
+joseda,joseda@gmail.com,padel-1,09/10/2026,16:00,raqueta&balon,true
+mario,mario@gmail.com,padel-2,09/10/2026,18:00,raqueta,true
+joseda,joseda@joseda.com,padel-1,2007-01-01,16:00,raquetas&balon,true
+Hugo,hugo@gmail.com,tenis,2026-10-09,16:00,raquetas&balon,true
+Hugo,hugo@gmail.com,tenis,2026-10-09,16:00,raquetas&balon,true
+Hugo,hugo@gmail.com,tenis,2026-10-09,16:00,raquetas&balon,true
+Joseda2,joseda@joseda.com,padel-1,2026-10-09,18:00,balon&petos&conos,true
+Joseda 3,joseda@joseda.com,padel-1,2026-10-09,18:00,balon&petos&conos,true
