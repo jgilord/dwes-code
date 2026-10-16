@@ -14,11 +14,8 @@
 </head>
 <body>
   <h1>Reserva de pista</h1>
-  <?php if ($request && !$error): ?>
-    <p class="notice" style=" background-color: green;">Reserva realizada de forma correcta!</p>
-  <?php endif ?>
-  <?php if ($request && $error): ?>
-    <p class="notice" style=" background-color: red;"><?php echo $errorMessage ?></p>
+  <?php if ($request && !empty($errors)): ?>
+    <p class="notice" style=" background-color: red;">Los siguiente campos no son válidos: <?php echo join(", ",$errors) ?></p>
   <?php endif ?>
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <legend>Nombre</legend>
@@ -38,7 +35,7 @@
 
     <br>
     <legend>Fecha</legend>
-    <input type="date" name="fecha" id="fecha">
+    <input type="date" name="fecha" id="fecha" value="<?= $curDateFormated ?>" min="<?= $curDateFormated ?>" max="<?= $maxDateFormated ?>">
 
     <br>
     <legend>Hora</legend>
@@ -61,7 +58,8 @@
 
     <br>
     <br>
-    <button>Reservar</button>
+    <button type="submit">✔ Reservar</button>
   </form>
+  <a href="../"><button>🡠 Volver a la lista de reservas</button></a>
 </body>
 </html>

@@ -7,38 +7,16 @@
   <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
   <style>
     h3 {
-      margin-bottom: 0;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    table {
+      margin: 0;
     }
   </style>
 </head>
 <body>
   <h1>Reservas de pistas deportivas</h1>
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Pista</th>
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>Material</th>
-      <th>Términos</th>
-    </tr>
-    <?php foreach ($reservas as $reserva): ?>
-      <tr>
-        <td><?= htmlspecialchars($reserva["nombre"]) ?></td>
-        <td><?= htmlspecialchars($reserva["email"]) ?></td>
-        <td><?= htmlspecialchars($reserva["pista"]) ?></td>
-        <td><?= htmlspecialchars($reserva["fecha"]) ?></td>
-        <td><?= htmlspecialchars($reserva["hora"]) ?></td>
-        <td>
-          <?php foreach ($reserva["material"] as $material): ?>
-            <span><?= htmlspecialchars($material) ?></span><br>
-          <?php endforeach; ?>
-        </td>
-        <td><?= htmlspecialchars($reserva["terminos"]) ?></td>
-      </tr>
-    <?php endforeach; ?>
-  </table>
   <h3>Filtrar</h3>
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
     <legend>Pista</legend>
@@ -56,5 +34,38 @@
     <br>
     <button>Filtrar</button>
   </form>
+
+  <h3>Lista de reservas actuales</h3>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Pista</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Material</th>
+      <th>Términos</th>
+    </tr>
+    <?php foreach ($reservas as $reserva): ?>
+      <tr>
+        <td><?= htmlspecialchars($reserva["id"]) ?></td>
+        <td><?= htmlspecialchars($reserva["nombre"]) ?></td>
+        <td><?= htmlspecialchars($reserva["email"]) ?></td>
+        <td><?= htmlspecialchars($reserva["pista"]) ?></td>
+        <td><?= htmlspecialchars($reserva["fecha"]) ?></td>
+        <td><?= htmlspecialchars($reserva["hora"]) ?></td>
+        <td>
+          <?php foreach ($reserva["material"] as $material): ?>
+            <span><?= htmlspecialchars($material) ?></span><br>
+          <?php endforeach; ?>
+        </td>
+        <td><?= htmlspecialchars($reserva["terminos"]) ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </table>
+
+  <h3>Realizar una reserva</h3>
+  <a href="./reservar"><button>Realizar una reserva 🡢</button></a>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
   include("functions.php");
 
-  $reservas = CSVtoArray("datos/reservas.csv");
+  $reservas = CSVtoArray("datos/reservas.csv", "id");
   // dump(print_r($reservas, true));
 
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
