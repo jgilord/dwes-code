@@ -7,10 +7,9 @@
   $curDate = new DateTime("now");
   $curDateFormated = $curDate->format("Y-m-d");
   $maxDateFormated = $curDate->modify("+14 days")->format("Y-m-d");
+  $reserva = [];
   
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $reserva = [];
-
     $request = true;
 
     if (!($reserva["nombre"] = filter_input(INPUT_POST, "nombre", FILTER_UNSAFE_RAW))) {
@@ -36,9 +35,9 @@
     }
 
     $reserva["material"] = filter_input(INPUT_POST, 'material', FILTER_UNSAFE_RAW, FILTER_REQUIRE_ARRAY);
-    if ($reserva["material"] === null) {
-      $errors[] = "material";
-    }
+    // if ($reserva["material"] === null) {
+    //   $errors[] = "material";
+    // }
 
     if (!($reserva["terminos"] = filter_input(INPUT_POST, "terminos", FILTER_VALIDATE_BOOLEAN))) {
       $errors[] = "terminos";
@@ -54,6 +53,8 @@
       saveReservaCSV($idReserva, $reserva);
       http_response_code(303);
       header('Location: ../confirmacion/?n='.$idReserva);
+    } else {
+      http_response_code(422);
     }
   }
 

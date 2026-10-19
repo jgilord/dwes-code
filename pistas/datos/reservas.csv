@@ -1,14 +1,4 @@
 id,nombre,email,pista,fecha,hora,material,terminos
-0,joseda,joseda@gmail.com,padel-1,09/10/2026,16:00,raqueta&balon,true
-1,mario,mario@gmail.com,padel-2,09/10/2026,18:00,raqueta,true
-2,joseda,joseda@joseda.com,padel-1,2007-01-01,16:00,raquetas&balon,true
-3,Hugo,hugo@gmail.com,tenis,2026-10-09,16:00,raquetas&balon,true
-4,Hugo,hugo@gmail.com,tenis,2026-10-09,16:00,raquetas&balon,true
-5,Hugo,hugo@gmail.com,tenis,2026-10-09,16:00,raquetas&balon,true
-6,Joseda2,joseda@joseda.com,padel-1,2026-10-09,18:00,balon&petos&conos,true
-7,Joseda 3,joseda@joseda.com,padel-1,2026-10-09,18:00,balon&petos&conos,true
-8,Joseda,joseda@joseda.com,padel-1,2026-10-16,19:00,balon&petos,true
-9,Joseda,joseda@joseda.com,padel-1,2026-10-16,18:00,balon&petos,true
 9be23698,Joseda,joseda@joseda.com,padel-2,2026-10-16,18:00,balon&petos,true
 9be23698,Joseda,joseda@joseda.com,padel-2,2026-10-16,18:00,balon&petos,true
 9be23698,Joseda,joseda@joseda.com,padel-2,2026-10-16,18:00,balon&petos,true
@@ -16,3 +6,7 @@ id,nombre,email,pista,fecha,hora,material,terminos
 ef75f9aa,Joseda,joseda@joseda.com,padel-1,2026-10-16,16:00,raquetas,true
 817847c6,Joseda,joseda@joseda.com,padel-1,2026-10-16,17:00,raquetas,true
 55dcf596,Joseda,joseda@joseda.com,padel-1,2026-10-16,19:00,raquetas,true
+4df89690,Hugo Cruz,hugo@gmail.com,padel-2,2026-10-19,19:00,raquetas&balon&petos&conos,true
+045a07ea,Jose,admin@admin.com,padel-1,2026-10-27,19:00,,true
+1af800b7,Joseda,joseda@joseda.com,baloncesto,2026-10-21,20:00,,true
+5028f208,joseda,jgilord0103@gmail.com,baloncesto,2026-10-21,19:00,balon&petos,true

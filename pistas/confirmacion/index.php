@@ -8,8 +8,8 @@
     $reserva = getReservaById($idReserva);
   }
 
-  if ($reserva) {
-    dump(print_r($reserva, true));
+  if (!$reserva) {
+    http_response_code(404);
   }
 
   include("../templates/confirmacion.tpl.php");

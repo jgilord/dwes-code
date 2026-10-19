@@ -21,10 +21,10 @@
   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
     <legend>Pista</legend>
     <select name="pista" id="pista">
-      <option value="padel-1">Pádel 1</option>
-      <option value="padel-2">Pádel 2</option>
-      <option value="tenis">Tenis</option>
-      <option value="baloncesto">Baloncesto</option>
+      <option value="">Ninguna</option>
+      <?php foreach ($pistas as $clave => $valor): ?>
+        <option value="<?= htmlspecialchars($clave) ?>"><?= htmlspecialchars($valor) ?></option>
+      <?php endforeach; ?>
     </select>
 
     <br>

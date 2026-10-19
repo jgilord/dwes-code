@@ -45,7 +45,7 @@
 
 		array_unshift($reserva, $id);
 		$reserva["terminos"] = "true";
-		$reserva["material"] = join("&", $reserva["material"]);
+		$reserva["material"] = $reserva["material"] ? join("&", $reserva["material"]): "";
 		$lineaCSV = "\n".join(",", $reserva);
 		dump($lineaCSV);
     $res = file_put_contents("../datos/reservas.csv", $lineaCSV, FILE_APPEND);
