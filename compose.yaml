@@ -1,7 +1,7 @@
 services:
   web:
     image: php:8.3-apache
-    container_name: dews_apache
+    container_name: dwes_apache
     ports:
       - "80:80"
     volumes:
@@ -11,7 +11,7 @@ services:
 
   db:
     image: mariadb:10.11
-    container_name: dews_mariadb
+    container_name: dwes_mariadb
     restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -19,18 +19,20 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - dews_db:/var/lib/mysql
+      - dwes_db:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: dews_phpmyadmin
+    container_name: dwes_phpmyadmin
     ports:
       - "8080:80"
     environment:
       PMA_HOST: db
       PMA_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - ./config/phpmyadmin/themes/boodark:/var/www/html/themes/boodark
     depends_on:
       - db
 
 volumes:
-  dews_db:
+  dwes_db:
