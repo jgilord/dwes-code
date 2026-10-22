@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `reserva-pistas`;
+USE `reserva-pistas`;
+
 DROP TABLE IF EXISTS `materiales-reserva`;
 DROP TABLE IF EXISTS reservas;
 DROP TABLE IF EXISTS `lista-materiales`;

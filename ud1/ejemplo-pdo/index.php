@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Dump funtion
-function dump($dump) {
+function dump(string $dump) {
   echo "<pre>".$dump."</pre>";
 }
 
