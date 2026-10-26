@@ -117,7 +117,7 @@ function filtraFechaPista(array $reserva, array $filtro) {
 }
 
 /** Función auxiliar de validación de pista */
-function _validateFilterPista(array|null &$filtro) {
+function _validateFilterPista(?array &$filtro) {
   if (
     isset($filtro['pista'])
     && !empty($filtro['pista'])
@@ -130,7 +130,7 @@ function _validateFilterPista(array|null &$filtro) {
 }
 
 /** Función auxiliar de validación de fecha */
-function _validateFilterFecha(array|null &$filtro) {
+function _validateFilterFecha(?array &$filtro) {
   if (
     isset($filtro['fecha'])
     && !empty($filtro['fecha'])
