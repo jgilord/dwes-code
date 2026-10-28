@@ -1,7 +1,7 @@
 <?php
 
 /**
-    @var array $datosValidos es un array que está disponible cuando el usuario está haciendo un intento de reserva
+    @var array $datosValidados es un array que está disponible cuando el usuario está haciendo un intento de reserva
  */
 ?>
 <!DOCTYPE html>
@@ -10,12 +10,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de pistas</title>
+    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
 </head>
 <body>
     <!--Ponemos los errores -->
-    <?php if(isset($datosValidos)): ?>
+    <?php if(isset($datosValidados)): ?>
         <div class="erroresContainer"><ul>
-        <?php foreach($datosValidos as $nombreCampo => $inforValores): ?> 
+        <?php foreach($datosValidados as $nombreCampo => $inforValores): ?> 
             <?php if(!$inforValores['valido']): ?>
             <li><?php echo htmlspecialchars($inforValores['mensaje']); ?></li>
             <?php endif; ?> 
@@ -25,22 +26,22 @@
     <?php endif; ?>
     <fieldset><legend>Nueva reserva</legend>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-        <label for="nombre">Nombre: </label><input id="nombre" type="text" name="nombre" value="<?php echo htmlspecialchars($datosValidos['nombre']['value']??''); ?>">
-        <label for="email">Email: </label><input id="email" type="email" name="email" value="<?php echo htmlspecialchars($datosValidos['email']['value']??''); ?>">
+        <label for="nombre">Nombre: </label><input id="nombre" type="text" name="nombre" value="<?php echo htmlspecialchars($datosValidados['nombre']['value']??''); ?>">
+        <label for="email">Email: </label><input id="email" type="email" name="email" value="<?php echo htmlspecialchars($datosValidados['email']['value']??''); ?>">
         <label for="pista">Pista: </label>
         <select id="pista" name="pista">
             <option value="null">Selecciona una pista...</option>
             <?php foreach(PISTAS_VALIDAS as $pista): ?>
                 <option
                     value="<?php echo htmlspecialchars($pista); ?>"
-                    <?= (isset($datosValidos['pista']['value']) && $datosValidos['pista']['value'] === $pista) ? "selected" : "" ?>
+                    <?= (isset($datosValidados['pista']['value']) && $datosValidados['pista']['value'] === $pista) ? "selected" : "" ?>
                 >
                     <?php echo htmlspecialchars($pista); ?>
                 </option>
             <?php endforeach; ?>
         </select>
         <label for="fecha">Fecha: </label>
-        <input id="fecha" type="date" name="fecha" value="<?= $datosValidos['fecha']['value']??"" ?>">
+        <input id="fecha" type="date" name="fecha" value="<?= $datosValidados['fecha']['value']??"" ?>">
         <fieldset>
             <legend>Hora</legend>
             <?php foreach(HORAS_VALIDAS as $horaValida): ?>
@@ -49,7 +50,7 @@
                     type="radio"
                     name="hora"
                     value="<?php echo htmlspecialchars($horaValida); ?>"
-                    <?= (isset($datosValidos['hora']['value']) && $datosValidos['hora']['value'] === $horaValida) ? "checked" : "" ?>
+                    <?= (isset($datosValidados['hora']['value']) && $datosValidados['hora']['value'] === $horaValida) ? "checked" : "" ?>
                 >
                 <label for="hora_<?php echo htmlspecialchars($horaValida); ?>"><?php echo htmlspecialchars($horaValida); ?></label>
             <?php endforeach; ?>
@@ -62,12 +63,12 @@
                     type="checkbox"
                     name="material[]"
                     value="<?php echo htmlspecialchars($material); ?>"
-                    <?= (isset($datosValidos['material']['value']) && in_array($material, $datosValidos['material']['value'])) ? "checked" : "" ?>
+                    <?= (isset($datosValidados['material']['value']) && in_array($material, $datosValidados['material']['value'])) ? "checked" : "" ?>
                 >
                 <label for="mat_<?php echo htmlspecialchars($material); ?>"><?php echo ucfirst(htmlspecialchars($material)); ?></label>
             <?php endforeach; ?>
         </fieldset>
-        <input type="checkbox" id="normas_aceptadas" value="normas_aceptadas"><label for="normas_aceptadas">Acepto que vendas mi alma al diablo</label>
+        <input type="checkbox" id="normas_aceptadas" name="normas_aceptadas" value="normas_aceptadas"><label for="normas_aceptadas">Acepto que vendas mi alma al diablo</label>
         <br>
         <button type="submit" name="nueva_reserva" value="nueva_reserva">Hacer reserva</button>
     </form>

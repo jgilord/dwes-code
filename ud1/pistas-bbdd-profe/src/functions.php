@@ -16,6 +16,20 @@ function getPersistentData($dataSource, $origin){
             return null;
     }
 }
+
+function savePersistentData($dataSource, $origin, $data){
+
+    switch($origin){
+        case 'db':
+            return _saveDBData($dataSource, $data);
+        break;
+        // case 'file':
+        //     return _saveCSVData($dataSource);
+        default:
+            return null;
+    }
+}
+
 function _getDBData($dbConnectionParameters){
     $data = [];
     $dbh =  new PDO(
@@ -45,6 +59,30 @@ function _getCSVData($path){
         return $data;
     }
     return null;
+}
+
+function _saveDBData($dbConnectionParameters, $data) {
+  try {
+    $dbh =  new PDO(
+      $dbConnectionParameters['dsn'],
+      $dbConnectionParameters['username'],
+      $dbConnectionParameters['password'],
+    );
+
+    $sth = $dbh->prepare('INSERT INTO reserva (nombre, email, pista, fecha, hora, material) VALUES (?, ?, ?, ?, ?, ?)');
+    $sth->execute([
+      $data['nombre']['value'],
+      $data['email']['value'],
+      $data['pista']['value'],
+      $data['fecha']['value'],
+      $data['hora']['value'],
+      join(";", $data['material']['value'])
+    ]);
+
+    return true;
+  } catch (Exception $e) {
+    return false;
+  }
 }
 
 /**
@@ -223,12 +261,19 @@ function _validateMaterialNuevaReserva() {
     ]; 
   }
 }
-function _validateNormasNuevaReserva(){
-    //TODO
+function _validateNormasNuevaReserva() {
+  if (filter_input(INPUT_POST, 'normas_aceptadas', FILTER_UNSAFE_RAW)) {
     return [
-        'valido' => true,
-        'value' => 'true'
+      'valido' => true,
+      'value' => true
     ];
+  } else {
+    return [
+      'valido' => false,
+      'mensaje' => 'Debes aceptar los términos y condiciones',
+      'value' => false
+    ]; 
+  }
 }
 function _validateNombreNuevaReserva(){
     if($nombre = filter_input(INPUT_POST,'nombre')){

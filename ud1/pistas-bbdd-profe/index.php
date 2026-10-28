@@ -10,9 +10,9 @@ include(__DIR__.'/src/vars.php');
 include(__DIR__.'/src/functions.php');
 //Obtengo todas las reservas
 $reservas = getPersistentData([
-    'dsn' => 'mysql:dbname=reservas_pistas;host=localhost',
+    'dsn' => 'mysql:dbname=reservas_pistas;host=db',
     'username' => 'root',
-    'password' => ''
+    'password' => 'zYk8U77FkzRcDjV4NQ9cr6WKHAFNIg91'
 ],'db');
 
 //Obtengo filtros, si los hay

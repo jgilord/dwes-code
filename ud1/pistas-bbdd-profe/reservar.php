@@ -9,11 +9,26 @@ include(__DIR__.'/src/vars.php');
 include(__DIR__.'/src/functions.php');
 
 if(($_SERVER['REQUEST_METHOD'] === 'POST')&&(isset($_POST['nueva_reserva']))){
-    //Proceso la petición
-      //Validación de datos
-    $datosValidos = validateNuevaReservaInput();
-    //Si los datos son válidos, grabamos la reserva.
-    //TODO
+  //Proceso la petición
+  //Validación de datos
+  $datosValidados = validateNuevaReservaInput();
+  $datosValidos = true;
+
+  foreach ($datosValidados as $dato) {
+    if (!($dato['valido'])) {
+      $datosValidos = false;
+    }
+  }
+  
+  if ($datosValidos) {
+    $saveResult = savePersistentData([
+      'dsn' => 'mysql:dbname=reservas_pistas;host=db',
+      'username' => 'root',
+      'password' => 'zYk8U77FkzRcDjV4NQ9cr6WKHAFNIg91'
+    ], 'db', $datosValidados);
+
+    dump($saveResult);
+  }
 }
 
 //Plantlla
