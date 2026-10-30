@@ -75,7 +75,7 @@
     $res .= $tilesIndex[$tileIndex]."'>";
 
     if ($link) {
-      $res .= "<img src='public/link.png'></img>";
+      $res .= "<img src='public/link.png' draggable='false'></img>";
     }
 
     $res .= "</div>";
@@ -141,51 +141,11 @@
 	}
 
   function getLinkPos() {
-    $res = [];
-    $nextLinkPosPOST = filter_input(INPUT_POST, "next-link-pos", FILTER_UNSAFE_RAW);
-    
-    if ($nextLinkPosPOST) {
-      $nextLinkPos = explode(";", $nextLinkPosPOST);
-
-      if ($nextLinkPos && isset($nextLinkPos[0]) && isset($nextLinkPos[1])) {
-        $res["x"] = intval($nextLinkPos[0]);
-        $res["y"] = intval($nextLinkPos[1]);
-      }
-    }
-
-    if (!(isset($res["x"]) && isset($res["y"]))) {
-      $res = $_SESSION["link_pos"];
-    }
-
-    // print_r($res);
-    return $res;
+    return $_SESSION["link_pos"];
   }
 
   function getTileTypeFromCords(array $cords, array $stage) {
     return $stage[$cords["x"]][$cords["y"]];
-  }
-
-  function getNextLinkPosFormatted($dir, $stage) {
-    $currentLinkPos = getLinkPos();
-    $nextlinkPos = $currentLinkPos;
-    if ($dir === "up" && $nextlinkPos["x"] > 0) {
-      $nextlinkPos["x"]--;
-    } else if ($dir === "down" && $nextlinkPos["x"] < 31) {
-      $nextlinkPos["x"]++;
-    } else if ($dir === "left" && $nextlinkPos["y"] > 0) {
-      $nextlinkPos["y"]--;
-    } else if ($dir === "rigth" && $nextlinkPos["y"] < 31) {
-      $nextlinkPos["y"]++;
-    }
-
-    $walkableTiles = [0, 1, 2, 35];
-
-    if (!in_array(getTileTypeFromCords($nextlinkPos, $stage), $walkableTiles)) {
-      $nextlinkPos = $currentLinkPos;
-    }
-
-
-    return join(";", $nextlinkPos);
   }
 
   function setupSesion() {
@@ -193,9 +153,31 @@
 
     if (!isset($_SESSION["link_pos"])) {
       $_SESSION["link_pos"] = ["x" => 0, "y" => 15];
-    } else {
-      $_SESSION["link_pos"] = getLinkPos();
     }
+  }
 
+  function checkNextLinkPosAndUpdate($stage) {
+    $dir = filter_input(INPUT_POST, "next-link-pos", FILTER_UNSAFE_RAW);
+
+    if ($dir && in_array($dir, ["up", "down", "left", "rigth"])) {
+      $currentLinkPos = getLinkPos();
+      $nextlinkPos = $currentLinkPos;
+
+      if ($dir === "up" && $nextlinkPos["x"] > 0) {
+        $nextlinkPos["x"]--;
+      } else if ($dir === "down" && $nextlinkPos["x"] < 31) {
+        $nextlinkPos["x"]++;
+      } else if ($dir === "left" && $nextlinkPos["y"] > 0) {
+        $nextlinkPos["y"]--;
+      } else if ($dir === "rigth" && $nextlinkPos["y"] < 31) {
+        $nextlinkPos["y"]++;
+      }
+
+      if (!in_array(getTileTypeFromCords($nextlinkPos, $stage), [0, 1, 2, 35])) {
+        $nextlinkPos = $currentLinkPos;
+      }
+
+      $_SESSION["link_pos"] = $nextlinkPos;
+    }
   }
 ?>

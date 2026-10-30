@@ -3,13 +3,9 @@
 
 	setupSesion();
 
-	// dump("Link Pos en SESSION");
-	// dump(print_r($_SESSION["link_pos"], true));
-
-	// dump("Link Pos");
-	// dump(print_r(getLinkPos(), true));
-
 	$stage = CSVtoBoard("public/stage.csv");
+	checkNextLinkPosAndUpdate($stage);
+
 	$linkPos = getLinkPos();
 	$boardContent = getBoardMarkup($stage);
 

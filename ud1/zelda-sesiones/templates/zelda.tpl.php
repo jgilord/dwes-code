@@ -17,19 +17,22 @@
     
     <form class="controls" method="POST">
       <?php if ($linkPos["x"] != 0): ?>
-      <button id="control-up" name="next-link-pos" type="submit" class="control" value="<?php echo getNextLinkPosFormatted("up", $stage) ?>">🡱</button>
+      <button id="control-up" name="next-link-pos" type="submit" class="control" value="up">🡱</button>
       <?php endif?>
       <?php if ($linkPos["x"] != 31): ?>
-      <button id="control-down" name="next-link-pos" type="submit" class="control" value="<?php echo getNextLinkPosFormatted("down", $stage) ?>">🡳</button>
+      <button id="control-down" name="next-link-pos" type="submit" class="control" value="down">🡳</button>
       <?php endif?>
       <?php if ($linkPos["y"] != 31): ?>
-      <button id="control-rigth" name="next-link-pos" type="submit" class="control" value="<?php echo getNextLinkPosFormatted("rigth", $stage) ?>">🡲</button>
+      <button id="control-rigth" name="next-link-pos" type="submit" class="control" value="rigth">🡲</button>
       <?php endif?>
       <?php if ($linkPos["y"] != 0): ?>
-      <button id="control-left" name="next-link-pos" type="submit" class="control" value="<?php echo getNextLinkPosFormatted("left", $stage) ?>">🡰</button>
+      <button id="control-left" name="next-link-pos" type="submit" class="control" value="left">🡰</button>
       <?php endif?>
-    </f>
+    </form>
   </main>
+
+
+  
   <script>
     // Extra solo para poder usar WASD o flechas, lo unico que hace es detectarlas y clickar en los botones
     const butonUp = document.getElementById('control-up');
