@@ -3,8 +3,10 @@
 
   $pdo = conectar();
 
-  dump(contarLibrosDisponible($pdo));
-  dump(print_r(obtenerLibro($pdo, 1), true));
+  // dump(contarLibrosDisponible($pdo));
+  // dump(print_r(obtenerLibro($pdo, 1), true));
+
+  $categoriaValidadaGET = 
 
   $libros = listarLibros($pdo, "Novela");
 

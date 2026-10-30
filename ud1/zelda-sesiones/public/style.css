@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  margin: 0;
+  padding: 1rem;
+  background-color: #2c2c2c;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.main-frame {
+  width: 32rem;
+  height: 32rem;
+  border: 0.5rem solid #494949;
+  background-color: #2c2c2c;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.tile {
+  width: 1rem;
+  height: 1rem;
+  
+  background-image: url('spritesheet.png');
+  background-repeat: no-repeat;
+  background-position-x: -86px;
+  background-position-y: -86px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.controls {
+  background-color: #494949;
+  border-radius: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.control {
+  background-color: #2c2c2c;
+  color: white;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  border: 0;
+  cursor: pointer;
+}
+
+/* CASILLAS */
+
+.bridge-wood-tile {
+  background-position-x: -1px;
+  background-position-y: -1px;
+}
+
+.stairs-down-tile {
+  background-position-x: -18px;
+  background-position-y: -1px;
+}
+
+.stairs-tile {
+  background-position-x: -35px;
+  background-position-y: -1px;
+}
+
+.sand-top-left-tile {
+  background-position-x: -52px;
+  background-position-y: -1px;
+}
+
+.sand-top-tile {
+  background-position-x: -69px;
+  background-position-y: -1px;
+}
+
+.sand-top-right-tile {
+  background-position-x: -86px;
+  background-position-y: -1px;
+}
+
+.water-top-left-tile {
+  background-position-x: -1px;
+  background-position-y: -18px;
+}
+
+.water-top-tile {
+  background-position-x: -18px;
+  background-position-y: -18px;
+}
+
+.water-top-right-tile {
+  background-position-x: -35px;
+  background-position-y: -18px;
+}
+
+.green-mountain-top-left-tile {
+  background-position-x: -52px;
+  background-position-y: -18px;
+}
+
+.green-mountain-top-tile {
+  background-position-x: -69px;
+  background-position-y: -18px;
+}
+
+.green-mountain-top-right-tile {
+  background-position-x: -86px;
+  background-position-y: -18px;
+}
+
+.water-left-tile {
+  background-position-x: -1px;
+  background-position-y: -35px;
+}
+
+.water-tile {
+  background-position-x: -18px;
+  background-position-y: -35px;
+}
+
+.water-right-tile {
+  background-position-x: -35px;
+  background-position-y: -35px;
+}
+
+.green-mountain-middle-left-tile {
+  background-position-x: -52px;
+  background-position-y: -35px;
+}
+
+.green-mountain-middle-tile {
+  background-position-x: -69px;
+  background-position-y: -35px;
+}
+
+.green-mountain-middle-right-tile {
+  background-position-x: -86px;
+  background-position-y: -35px;
+}
+
+.water-bottom-left-tile {
+  background-position-x: -1px;
+  background-position-y: -52px;
+}
+
+.water-bottom-tile {
+  background-position-x: -18px;
+  background-position-y: -52px;
+}
+
+.water-bottom-right-tile {
+  background-position-x: -35px;
+  background-position-y: -52px;
+}
+
+.green-rock-tile {
+  background-position-x: -52px;
+  background-position-y: -52px;
+}
+
+.bush-tile {
+  background-position-x: -69px;
+  background-position-y: -52px;
+}
+
+.wall-tile {
+  background-position-x: -86px;
+  background-position-y: -52px;
+}
+
+.coast-top-left-tile {
+  background-position-x: -1px;
+  background-position-y: -69px;
+}
+
+.coast-top-right-tile {
+  background-position-x: -18px;
+  background-position-y: -69px;
+}
+
+.coast-bottom-left-tile {
+  background-position-x: -35px;
+  background-position-y: -69px;
+}
+
+.coast-bottom-right-tile {
+  background-position-x: -52px;
+  background-position-y: -69px;
+}
+
+.dry-bush-tile {
+  background-position-x: -69px;
+  background-position-y: -69px;
+}
+
+.gravestone-tile {
+  background-position-x: -86px;
+  background-position-y: -69px;
+}
+
+.brown-mountain-top-left-tile {
+  background-position-x: -1px;
+  background-position-y: -86px;
+}
+
+.brown-mountain-top-tile {
+  background-position-x: -18px;
+  background-position-y: -86px;
+}
+
+.brown-mountain-top-right-tile {
+  background-position-x: -35px;
+  background-position-y: -86px;
+}
+
+.brown-rock-tile {
+  background-position-x: -52px;
+  background-position-y: -86px;
+}
+
+.white-flower-tile {
+  background-position-x: -69px;
+  background-position-y: -86px;
+}
+
+.grass-tile {
+  background-position-x: -86px;
+  background-position-y: -86px;
+}
+
+.brown-mountain-bottom-left-tile {
+  background-position-x: -1px;
+  background-position-y: -103px;
+}
+
+.brown-mountain-bottom-tile {
+  background-position-x: -18px;
+  background-position-y: -103px;
+}
+
+.brown-mountain-bottom-right-tile {
+  background-position-x: -35px;
+  background-position-y: -103px;
+}
+
+.grey-mountain-top-left-tile {
+  background-position-x: -52px;
+  background-position-y: -103px;
+}
+
+.grey-mountain-top-tile {
+  background-position-x: -69px;
+  background-position-y: -103px;
+}
+
+.grey-mountain-top-right-tile {
+  background-position-x: -86px;
+  background-position-y: -103px;
+}
+
+.stone-floor-tile {
+  background-position-x: -1px;
+  background-position-y: -120px;
+}
+
+.green-bridge-tile {
+  background-position-x: -18px;
+  background-position-y: -120px;
+}
+
+.grey-rock-tile {
+  background-position-x: -35px;
+  background-position-y: -120px;
+}
+
+.grey-mountain-bottom-left-tile {
+  background-position-x: -52px;
+  background-position-y: -120px;
+}
+
+.grey-mountain-bottom-tile {
+  background-position-x: -69px;
+  background-position-y: -120px;
+}
+
+.grey-mountain-bottom-right-tile {
+  background-position-x: -86px;
+  background-position-y: -120px;
+}

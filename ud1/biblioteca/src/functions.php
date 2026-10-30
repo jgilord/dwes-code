@@ -93,4 +93,8 @@
     }
   }
 
+  function categoriaValidadaGET() {
+    
+  }
+
 ?>

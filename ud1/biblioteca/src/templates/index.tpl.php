@@ -21,6 +21,7 @@
         <option value=<?= htmlspecialchars($genero)?>><?= htmlspecialchars($genero)?></option>
       <?php endforeach; ?>
     </select>
+    <input type="submit" value="Enviar">
   </form>
   <table>
     <tr>

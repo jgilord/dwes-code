@@ -166,6 +166,6 @@
       $nextlinkPos = $currentLinkPos;
     }
 
-    return "/act4/?link_pos_x=".$nextlinkPos["x"]."&link_pos_y=".$nextlinkPos["y"];
+    return "/ud1/act4?link_pos_x=".$nextlinkPos["x"]."&link_pos_y=".$nextlinkPos["y"];
   }
 ?>
