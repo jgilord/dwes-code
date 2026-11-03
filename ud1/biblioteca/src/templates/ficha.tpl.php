@@ -28,5 +28,6 @@
   <?php else: ?>
     <span style="font-style: italic;">Libro no encontrado</span>
   <?php endif; ?>
+  <a href="../"><button>Volver al listado de Libros</button></a>
 </body>
 </html>

@@ -6,9 +6,11 @@
   // dump(contarLibrosDisponible($pdo));
   // dump(print_r(obtenerLibro($pdo, 1), true));
 
-  $categoriaValidadaGET = 
+  $generoValidadoGET = generoValidadoGET();
 
-  $libros = listarLibros($pdo, "Novela");
+  $libros = listarLibros($pdo, $generoValidadoGET);
+
+  dump(print_r($_POST, true));
 
   include_once(__DIR__."/src/templates/index.tpl.php");
 ?>
