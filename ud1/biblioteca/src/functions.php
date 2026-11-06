@@ -209,11 +209,29 @@
       return $statement->rowCount();
     } catch (PDOException $e) {
       if (isset($e->errorInfo[1]) && $e->errorInfo[1] == 1451) {
-        dump("No se puede borrar: el libro tiene préstamos registrados");
+        throw new Exception("No se puede borrar: el libro tiene préstamos registrados", 1451);
       } else {
-        dump("Error en borrarLibro()".$e);
+        throw new Exception("Error en borrarLibro()", 1);
       }
-      return 0;
     }
+  }
+
+  function getAccionValidadaPOST() {
+    $accion["valido"] = true;
+
+    $accion["accion"] = filter_input(INPUT_POST, "accion", FILTER_UNSAFE_RAW);
+    $accion["id"] = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+    
+    if (!(isset($accion["accion"]) && in_array($accion["accion"], ["borrar", "prestar", "devolver"]))) {
+      $accion["valido"] = false;
+      $accion["errores"][] = "La acción de la solicitud no es válida.";
+    }
+
+    if (!isset($accion["id"])) {
+      $accion["valido"] = false;
+      $accion["errores"][] = "La ID del libro a realizar la acción no es válida.";
+    }
+
+    return $accion;
   }
 ?>

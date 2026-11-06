@@ -10,7 +10,5 @@
 
   $libros = listarLibros($pdo, $generoValidadoGET);
 
-  dump(print_r($_POST, true));
-
   include_once(__DIR__."/src/templates/index.tpl.php");
 ?>

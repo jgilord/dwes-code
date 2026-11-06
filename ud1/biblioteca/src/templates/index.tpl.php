@@ -53,14 +53,14 @@
             <?php endif; ?>
           <?php endforeach; ?>
           <td>
-            <form method="POST">
+            <form method="POST" action="./accion/">
               <input type="hidden" name="id" value="<?= htmlspecialchars($libro["id"]) ?>">
               <input type="hidden" name="accion" value=<?= htmlspecialchars($valor ? "prestar" : "devolver") ?>>
               <button type="submit"><?= htmlspecialchars($valor ? "Prestar" : "Devolver") ?></button>
             </form>
           </td>
           <td>
-            <form method="POST">
+            <form method="POST" action="./accion/">
               <input type="hidden" name="id" value="<?= htmlspecialchars($libro["id"]) ?>">
               <input type="hidden" name="accion" value="borrar">
               <button type="submit">❌</button>
