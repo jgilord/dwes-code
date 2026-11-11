@@ -110,6 +110,7 @@ function getTournamentsAndPlayersData(PDO $dbh) {
   if (isset($torneos)) {
     foreach ($torneos as $key => $value) {
       $torneos[$key]["playersData"] = getPlayersOfTournamentsFromDB($dbh, $torneos[$key]["id"]);
+      // dump(print_r($torneos[$key]["playersData"], true));
     }
   }
 

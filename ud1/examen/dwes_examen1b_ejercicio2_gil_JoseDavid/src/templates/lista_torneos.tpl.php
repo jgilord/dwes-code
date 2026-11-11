@@ -21,25 +21,27 @@
       <?php foreach ($tournamentsAndPlayersData as $torneo): ?>
         <section>
             <h2><?= htmlspecialchars($torneo["nombre"]) ?> <small>(<?= htmlspecialchars($torneo["juego"]) ?>)</small></h2>
-            <a href="./?op=actualizar_puntos&id=<?= htmlspecialchars($torneo["id"]) ?>"><button>Actualizar puntos torneo</button></a>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jugador</th>
-                        <th>Puntos</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($torneo["playersData"] as $player): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($player["nick"]) ?></td>
-                        <td><?= htmlspecialchars($player["puntos"]) ?></td>
-                        <td><a href="./?op=borrar_jugador&id=<?= htmlspecialchars($player["id"]) ?>"><button>Eliminar</button></a></td>
-                    </tr>
-                  <?php endforeach; ?>
-                </tbody>
-            </table>
+            <?php if (isset($torneo["playersData"]) && count($torneo["playersData"]) > 0 && $torneo["playersData"][0]["nick"]): ?>
+              <a href="./?op=actualizar_puntos&id=<?= htmlspecialchars($torneo["id"]) ?>"><button>Actualizar puntos torneo</button></a>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Jugador</th>
+                          <th>Puntos</th>
+                          <th>Eliminar</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($torneo["playersData"] as $player): ?>
+                      <tr>
+                          <td><?= htmlspecialchars($player["nick"]) ?></td>
+                          <td><?= htmlspecialchars($player["puntos"]) ?></td>
+                          <td><a href="./?op=borrar_jugador&id=<?= htmlspecialchars($player["id"]) ?>"><button>Eliminar</button></a></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+              </table>
+            <?php endif; ?>
         </section>
       <?php endforeach; ?>
     </main>
