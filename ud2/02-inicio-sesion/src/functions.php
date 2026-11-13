@@ -43,13 +43,20 @@ function getValidatedRegisterUser(PDO $pdo): array {
 }
 
 function getConnectionFromDDBB() {
+  $res = null;
   $dsn = "mysql:host=db;dbname=login_dwes;charset=utf8mb4";
 
-  return new PDO($dsn, "login_dwes", "Login2026.", [
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
-  ]);
+  try {
+    $res = new PDO($dsn, "login_dwes", "Login2026.", [
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES => false,
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+    ]);
+  } catch (Exception $e) {
+    echo "Error en getConnectionFromDDBB(): ".$e;
+  }
+
+  return $res;
 }
 
 function getUserByEmailFromDDBB(PDO $pdo, string|null $email = null) {
@@ -178,6 +185,7 @@ function saveUserInSession(array $user) {
   $res = false;
 
   if (!isset($_SESSION["user"])) {
+    session_regenerate_id(true);
     $_SESSION["user"] = $user;
     $res = true;
   }
