@@ -42,21 +42,20 @@
   <form method="post">
     <h5>¿Qué función de PHP se utiliza para iniciar una sesión o recuperar la existente?</h5>
 
-    <input type="radio" id="question-1" name="respuesta" value="HTML">
+    <input type="radio" id="question-1" name="respuesta" value="A">
     <label for="question-1">HTML</label><br>
 
-    <input type="radio" id="question-2" name="respuesta" value="CSS">
+    <input type="radio" id="question-2" name="respuesta" value="B">
     <label for="question-2">CSS</label><br>
 
-    <input type="radio" id="question-3" name="respuesta" value="JavaScript">
-    <label for="question-3">JavaScript</label>
+    <input type="radio" id="question-3" name="respuesta" value="C">
+    <label for="question-3">JavaScript</label><br>
 
-    <input type="radio" id="question-4" name="respuesta" value="JavaScript">
+    <input type="radio" id="question-4" name="respuesta" value="D">
     <label for="question-4">C++</label>
   </form>
 
-
-  <form method="post">
+  <form method="post" style="display: flex; justify-content: space-between; margin-top: 1rem;">
     <button type="submit" name="to-cuestion" value="previous">🡠 Anterior</button>
     <button type="submit" name="to-cuestion" value="next">Siguiente 🡢</button>
   </form>

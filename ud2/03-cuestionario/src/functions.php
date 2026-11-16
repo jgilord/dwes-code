@@ -214,3 +214,70 @@ function logoutUserFromSession() {
 
   return $res;
 }
+
+function getIDsPreguntasFromDDBB(PDO $pdo) {
+  $res = null;
+
+  try {
+    $query = "
+      SELECT id
+      FROM preguntas;
+    ";
+    
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    
+    $res = [];
+    foreach ($statement->fetchAll() as $pregunta) {
+      $res[] = $pregunta["id"];
+    }
+
+  } catch (Exception $e) {
+    echo "Error en getLoggedUserDDBB(): ".$e;
+    $res = false;
+  }
+
+  return $res;
+}
+
+function getIDsPreguntasRandom(array $idPreguntas, int $numPreguntas = 0) {
+  $res = null;
+
+  if ($numPreguntas > 0 && $numPreguntas <= count($idPreguntas)) {
+    $res = $idPreguntas;
+    shuffle($res);
+
+    $res = array_slice($res, 0, 5);
+  }
+  
+  return $res;
+}
+
+
+function getQuestionsDataFromSession() {
+  $res = null;
+
+  if (isset($_SESSION["quest"])) {
+    $res = $_SESSION["quest"];
+  }
+
+  return $res;
+}
+
+function saveQuestionsDataInSession(array $idPreguntasRandom) {
+  $res = false;
+
+  if (!isset($_SESSION["quest"])) {
+    $questionsData = [];
+    $questionsData["currentQuestion"] = 0;
+
+    foreach ($idPreguntasRandom as $idPregunta) {
+      $questionsData["questionList"][] = ["idQuestion" => $idPregunta, "answer" => null];
+    }
+
+    $_SESSION["quest"] = $questionsData;
+    $res = $questionsData;
+  }
+
+  return $res;
+}
