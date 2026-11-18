@@ -269,7 +269,8 @@ function saveQuestionsDataInSession(array $idPreguntasRandom) {
 
   if (!isset($_SESSION["quest"])) {
     $questionsData = [];
-    $questionsData["currentQuestion"] = 0;
+    $questionsData["current"] = 0;
+    $questionsData["total"] = count($idPreguntasRandom);
 
     foreach ($idPreguntasRandom as $idPregunta) {
       $questionsData["questionList"][] = ["idQuestion" => $idPregunta, "answer" => null];
@@ -277,6 +278,72 @@ function saveQuestionsDataInSession(array $idPreguntasRandom) {
 
     $_SESSION["quest"] = $questionsData;
     $res = $questionsData;
+  }
+
+  return $res;
+}
+
+function getQuestionByIdFromDDBB(PDO $pdo, int $id) {
+  $res = null;
+
+  try {
+    $query = "
+      SELECT *
+      FROM preguntas
+      WHERE id = ?;
+    ";
+    
+    $statement = $pdo->prepare($query);
+    $statement->execute([$id]);
+    
+    if ($statement->rowCount() > 0) {
+      $res = $statement->fetch();
+    }
+  } catch (Exception $e) {
+    echo "Error en getQuestionByIdFromDDBB(): ".$e;
+    $res = false;
+  }
+
+  return $res;
+}
+
+function updateQuestionsDataInSession(array $questionsData) {
+  $res = false;
+
+  if (isset($_SESSION["quest"])) {
+    $_SESSION["quest"] = $questionsData;
+  }
+
+  return $res;
+}
+
+function getAccionQuestValidadaPOST() {
+  $res = null;
+  $accion = filter_input(INPUT_POST, "action", FILTER_UNSAFE_RAW);
+
+  if (in_array($accion, ["submit", "previous", "next"])) {
+    $res = $accion;
+  }
+
+  return $res;
+}
+
+function getAnswerQuestValidadaPOST(array $questionsData) {
+  $res = null;
+
+  $question = filter_input(INPUT_POST, "question", FILTER_VALIDATE_INT);
+  $answer = filter_input(INPUT_POST, "answer", FILTER_UNSAFE_RAW);
+
+  if (
+    isset($question) &&
+    $question >= 0 &&
+    $question <= $questionsData["total"]-1 &&
+    isset($answer) &&
+    in_array($answer, ["A", "B", "C", "D"])
+  ) {
+    $res = [];
+    $res["question"] = $question;
+    $res["answer"] = $answer;
   }
 
   return $res;

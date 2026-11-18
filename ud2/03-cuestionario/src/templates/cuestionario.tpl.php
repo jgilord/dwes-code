@@ -37,27 +37,41 @@
     </div>
   </div>
 
-  <h4>Pregunta 1/5  </h4>
+  <h4>Pregunta <?= htmlspecialchars($questions["current"]+1 ?? "0") ?>/<?= htmlspecialchars($questions["total"] ?? "0") ?></h4>
   
   <form method="post">
-    <h5>¿Qué función de PHP se utiliza para iniciar una sesión o recuperar la existente?</h5>
+    <h5><?= htmlspecialchars($currentQuestionData["enunciado"] ?? "Enunciado") ?><h5>
+    <input type="hidden" name="question" value="<?= $questions["current"] ?>">
 
-    <input type="radio" id="question-1" name="respuesta" value="A">
-    <label for="question-1">HTML</label><br>
+    <input type="radio" id="question-1" name="answer" value="A" <?= $currentQuestion["answer"] === "A" ? "checked" : "" ?>>
+    <label for="question-1">
+      <?= htmlspecialchars($currentQuestionData["opcion_a"] ?? "Opción A") ?>
+    </label><br>
 
-    <input type="radio" id="question-2" name="respuesta" value="B">
-    <label for="question-2">CSS</label><br>
+    <input type="radio" id="question-2" name="answer" value="B" <?= $currentQuestion["answer"] === "B" ? "checked" : "" ?>>
+    <label for="question-2">
+      <?= htmlspecialchars($currentQuestionData["opcion_b"] ?? "Opción B") ?>
+    </label><br>
 
-    <input type="radio" id="question-3" name="respuesta" value="C">
-    <label for="question-3">JavaScript</label><br>
+    <input type="radio" id="question-3" name="answer" value="C" <?= $currentQuestion["answer"] === "C" ? "checked" : "" ?>>
+    <label for="question-3">
+      <?= htmlspecialchars($currentQuestionData["opcion_c"] ?? "Opción C") ?>
+    </label><br>
 
-    <input type="radio" id="question-4" name="respuesta" value="D">
-    <label for="question-4">C++</label>
-  </form>
+    <input type="radio" id="question-4" name="answer" value="D" <?= $currentQuestion["answer"] === "D" ? "checked" : "" ?>>
+    <label for="question-4">
+      <?= htmlspecialchars($currentQuestionData["opcion_d"] ?? "Opción D") ?>
+    </label><br><br>
 
-  <form method="post" style="display: flex; justify-content: space-between; margin-top: 1rem;">
-    <button type="submit" name="to-cuestion" value="previous">🡠 Anterior</button>
-    <button type="submit" name="to-cuestion" value="next">Siguiente 🡢</button>
+    <!-- <button type="submit" name="action" value="answer">Enviar</button> -->
+    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+      <button type="submit" name="action" value="previous" <?= $questions["current"] > 0 ? "" : "disabled" ?>>🡠 Anterior</button>
+      <?php if($questions["current"] < $questions["total"]-1): ?>
+        <button type="submit" name="action" value="next">Siguiente 🡢</button>
+      <?php else: ?>
+        <button type="submit" name="action" value="submit">Enviar</button>
+      <?php endif; ?>
+    </div>
   </form>
 </body>
 </html>

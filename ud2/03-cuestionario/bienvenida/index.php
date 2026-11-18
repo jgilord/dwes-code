@@ -13,5 +13,7 @@ if (!isset($user)) {
   header("Location: ../login/");
 }
 
+$cuestionario = getQuestionsDataFromSession();
+
 include_once("../src/templates/bienvenida.tpl.php");
 ?>
